@@ -6,37 +6,55 @@ public class characterController : MonoBehaviour
 {
     public float speed;
     public float jumpHeight;
-    // Start is called before the first frame update
-    void Start()
+    [SerializeField] private GameObject triggerOBJ;
+    private Rigidbody2D player;
+
+    public Transform groundCheck;
+    public float groundCheckRadius;
+    public LayerMask groundLayer;
+    private bool isTouchingGround;
+    private void Start()
     {
-        
+        player = GetComponent<Rigidbody2D>();
     }
 
     // Update is called once per frame
     void Update()
     {
+        isTouchingGround = Physics2D.OverlapCircle(groundCheck.position, groundCheckRadius, groundLayer);
+
+        triggerOBJ.transform.position = transform.position;
         if (gameObject.tag == "Red")
         {
-            if (Input.GetKeyDown(KeyCode.W))
-                transform.Translate(Vector2.up * Time.deltaTime * jumpHeight);
             if (Input.GetKey(KeyCode.A))
-                transform.Translate(Vector2.left * Time.deltaTime * speed);
+                player.velocity = new Vector2 (-1 * speed, player.velocity.y);
             if (Input.GetKey(KeyCode.D))
-                transform.Translate(Vector2.right * Time.deltaTime * speed);
-
+                player.velocity = new Vector2(1 * speed, player.velocity.y);
+            if (Input.GetKeyDown(KeyCode.W) && isTouchingGround == true)
+            {
+                player.velocity = new Vector2(player.velocity.x, jumpHeight);
+                
+            }
+                
 
         }
         else if (gameObject.tag == "Blue")
         {
-            if (Input.GetKeyDown(KeyCode.UpArrow))
-                transform.Translate(Vector2.up * Time.deltaTime * jumpHeight);
             if (Input.GetKey(KeyCode.LeftArrow))
-                transform.Translate(Vector2.left * Time.deltaTime * speed);
+                player.velocity = new Vector2(-1 * speed, player.velocity.y);
             if (Input.GetKey(KeyCode.RightArrow))
-                transform.Translate(Vector2.right * Time.deltaTime * speed);
-
+                player.velocity = new Vector2(1 * speed, player.velocity.y);
+            if (Input.GetKeyDown(KeyCode.UpArrow) && isTouchingGround == true)
+            {
+                player.velocity = new Vector2(player.velocity.x, jumpHeight);
+                
+            }
         }
 
 
     }
+    
+
+    
+
 }

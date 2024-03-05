@@ -6,6 +6,11 @@ TagManager:
   tags:
   - Red
   - Blue
+  - TrigBlue
+  - TrigRed
+  - PlatformPurple
+  - PlatformBlue
+  - PlatformRed
   layers:
   - Default
   - TransparentFX
@@ -14,9 +19,9 @@ TagManager:
   - Water
   - UI
   - Metaball Effect
-  - 
-  - 
-  - 
+  - RedPLAT
+  - BluePLAT
+  - PurplePLAT
   - 
   - 
   - 
