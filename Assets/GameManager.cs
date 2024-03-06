@@ -38,4 +38,12 @@ public class GameManager : MonoBehaviour
         yield return new WaitForSecondsRealtime(3);
         levels[currentLevel].SetActive(true);
     }
+
+    public void Update()
+    {
+        if(Input.GetKey(KeyCode.Escape))
+        {
+            Application.Quit();
+        }
+    }
 }
