@@ -7,6 +7,7 @@ public class GameManager : MonoBehaviour
     // Start is called before the first frame update
     public static GameManager Instance;
 
+    [SerializeField] private GameObject titleCard;
     public GameObject[] levels = new GameObject[] { };
     public int currentLevel = 0;
 
@@ -26,6 +27,8 @@ public class GameManager : MonoBehaviour
             level.SetActive(false);
         }
         levels[0].SetActive(true);
+
+        StartCoroutine(titleCardOff());
     }
     public void loading()
     {
@@ -45,5 +48,11 @@ public class GameManager : MonoBehaviour
         {
             Application.Quit();
         }
+    }
+
+    public IEnumerator titleCardOff()
+    {
+        yield return new WaitForSeconds(3);
+        titleCard.SetActive(false);
     }
 }
